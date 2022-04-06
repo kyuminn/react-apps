@@ -1,0 +1,59 @@
+React
+사용자 정의 tag를 만들수 있다.
+이 사용자 정의 tag는 component로서 사용되고 , 이 component를 다른 사람이 사용할 수도 있다.
+
+
+1. React App 생성하기
+    npx create-react-app [projectName]
+    cf ) npx 를 사용하기 위해서는 node.js가 깔려있어야 한다.
+    cf ) node ver 16.14.2 사용 ( node ver 주의)
+2. sample project 실행
+    yarn start
+    npm start
+    둘중 편한걸로,,
+
+3. 입구 
+index.js => npm start를 이용해서 react app을 구동시키면 index.js 을 제일 먼저 찾고 거기에 써져있는 대로 동작함.
+index.js => 입구 페이지이기 때문에 여러가지 전역적인 설정들이 들어간다.
+
+
+
+4. 배포 
+npm start로 기동된 project는 개발을 위한 환경임
+실제로 배포할 만한 것은 아님
+배포 본 => npm run build 시 build 폴더가 생기면서 build 가 됨
+빌드한 파일 서비스 =>npx serve -s build
+cf) 위 명령어는 build 폴더에 있는 index.html을 서비스한다.
+serve는 nodeJS로 만들어진 어플리케이션으로, 서버 역할을 한다
+
+
+5. React에서는 사용자 정의 tag를 component 라고 부른다
+
+6. 
+    <img src="image.jpg" width="100" height="100"> => html tag에서 src, width, width 처럼 입력 값을 가질 수 있듯이 
+    사용자가 정의한 tag, 즉 component도 속성값을 가질 수 있는데 , 이것을 react에서는 prop 라고 한다. (property)
+
+    <input type="button" onclick="alert("hi")>
+    처럼 사용자 정의 태그에도 event 기능을 줄 수 있다!
+
+
+7. Vue에서는 {{}}를 쓰던데 React는 동적으로 변하는 값은 {}를 사용하는듯.
+
+8 Prop vs State
+
+prop : Component를 사용하는 외부자를 위한 데이터.
+state : Component를 만드는 내부자를 위한 데이터.
+
+state를 사용하기 위해서는 {useState} 라는 hook을 사용해야 하는데 , 이것은 react에서 제공하는 기본적인 hook 이다.
+
+cf) 상태로 만드려는 데이터가 원시타입(primitive) vs 객체타입(Object)이냐에 따라서 상태 업데이트가 다름
+
+    - 원시 타입 (primitive)
+        String, number ,boolean, ...
+        const [value,setValue] = useState(primitive);
+
+    - 객체 타입 (Object)
+        object, array, ...
+        const [value,setValue]= useState(Object);
+        newValue = {...value} 배열인 경우 newValue=[...value] // 복제본 생성하기
+        setValue(newValue)

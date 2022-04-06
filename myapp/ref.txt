@@ -27,7 +27,10 @@ cf) 위 명령어는 build 폴더에 있는 index.html을 서비스한다.
 serve는 nodeJS로 만들어진 어플리케이션으로, 서버 역할을 한다
 
 
-5. React에서는 사용자 정의 tag를 component 라고 부른다
+5. React에서는 사용자 정의 tag를 component 라고 부른다.
+사용자 정의 태그를 만들때는 반드시 앞글자가 대문자로 시작해야 한다.
+Component type으로는 class형, function형이 있다.
+
 
 6. 
     <img src="image.jpg" width="100" height="100"> => html tag에서 src, width, width 처럼 입력 값을 가질 수 있듯이 
@@ -41,10 +44,15 @@ serve는 nodeJS로 만들어진 어플리케이션으로, 서버 역할을 한�
 
 8 Prop vs State
 
-prop : Component를 사용하는 외부자를 위한 데이터.
+prop : Component를 사용하는 외부자를 위한 데이터. (상위 component=>하위 component 값 전달)
 state : Component를 만드는 내부자를 위한 데이터.
-
+props는 기본적으로 read-only 이므로, 값에 변화를 주고 싶다면 state로 치환해야 한다.
 state를 사용하기 위해서는 {useState} 라는 hook을 사용해야 하는데 , 이것은 react에서 제공하는 기본적인 hook 이다.
+
+cf)
+    const [number, setNumber] = useState(0);
+    useState 함수를 호출하면 배열을 반환하는데 , 함수 호출 시 주는 첫번째 인자값을 배열의 0번째 index 값으로 설정한다.
+    배열의 1번째 index 값은 setter 함수이다.
 
 cf) 상태로 만드려는 데이터가 원시타입(primitive) vs 객체타입(Object)이냐에 따라서 상태 업데이트가 다름
 
@@ -57,3 +65,12 @@ cf) 상태로 만드려는 데이터가 원시타입(primitive) vs 객체타입(
         const [value,setValue]= useState(Object);
         newValue = {...value} 배열인 경우 newValue=[...value] // 복제본 생성하기
         setValue(newValue)
+
+사용자의 모든 입력을 event로 받아야 한다니 ? => 웹은 모양만 따오고, 사실상 웹 모양의 앱을 만드는 느낌 <초공감..
+
+- 리액트는 사용자 정의 태그를 만드는 기술입니다. 
+- Props는 컴포넌트의 외부에서 사용하는 입력값입니다.  
+- State는 컴포넌트 내부에서 사용하는 값입니다. (내부에서 값 변화에 대응하기 위해서는 useState 사용.)
+- 이벤트는 Props를 이용합니다.
+- event.preventDefault()를 이용해서 기본동작을 비활성화 할 수 있습니다. 
+- form을 변경할 때는 Props를 State로 전환 후 onChange를 이용합니다. (이번 예제의 update 부분)
